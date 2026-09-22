@@ -39,7 +39,7 @@ export class OrdersController {
 
   @Post('/')
   create(@Body() orderData: CreateOrderDTO) {
-    return this.ordersService.create(orderData);
+    return this.ordersService.create(orderData as any);
   }
 
   @Put('/:id')
@@ -50,7 +50,7 @@ export class OrdersController {
     if (!(await this.ordersService.getById(id)))
       throw new NotFoundException('Order not found');
 
-    await this.ordersService.updateById(id, orderData);
+    await this.ordersService.updateById(id, orderData as any);
     return { success: true };
   }
 }
